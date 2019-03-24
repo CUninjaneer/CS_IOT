@@ -2,9 +2,12 @@
 
 # IOT Specialization
 # Course 4 - Raspberry Pi Platform and Python Programming for the Raspberry Pi
-# Week 1
+# Week 1 (Module 1)
 # 2019/03/23
-# Lecture 1
+
+################################################################################
+
+# Lecture 1.1
 # Raspberry Pi Board
 
 ################################################################################
@@ -15,7 +18,7 @@ Discussion of RPi hardware layout
 
 ################################################################################
 
-# Lecture 2
+# Lecture 1.2
 # Raspberry Pi Processor
 
 ################################################################################
@@ -31,7 +34,7 @@ Processor
 
 ################################################################################
 
-# Lecture 3
+# Lecture 1.3
 # Raspberry Pi vs Arduino
 
 ################################################################################
@@ -56,7 +59,7 @@ Having an OS means that we can do more complicated tasks with less programming b
 
 ################################################################################
 
-# Lecture 4
+# Lecture 2.1
 # Operating System Benefits
 
 ################################################################################
@@ -70,7 +73,7 @@ First off, having a user interface is a big advantage.
 
 ################################################################################
 
-# Lecture 4
+# Lecture 2.2
 # Processes
 
 ################################################################################
@@ -80,3 +83,108 @@ A big benefit of the improved processor and OS is that it can juggle processes t
 
 Using Hardware Devices
     OS uses drivers to let user interface with device vs Arduino style of commands straight to the microcontroller requiring writing those drivers yourself essentially.
+
+
+################################################################################
+
+# Lecture 2.3
+# Raspberry Pi IoT?
+
+################################################################################
+
+
+Is RPi really an IoT Device?
+
+    Maybe, it depends on how it is used.
+
+    Similarities
+        Network connectivity and computational intelligence
+        Small and cheap (relative to a PC)
+        Can interface directly with sensors/actuators via pins
+
+    Differences
+        Interface can be exactly the same as a PC running Linux
+        This is different because then the complexities of the system can be visible to the user.
+
+
+################################################################################
+
+# Lecture 3.1
+# Raspberry Pi Setup
+
+################################################################################
+
+
+Hook it up to an HDMI display, a USB keyboard, and a USB mouse.
+Put in a microSD card with NOOBS (New Out Of Box Software).
+    If you don't have an SD with NOOBS on it, you'll need to put NOOBS on it yourself.  Just download from RPi and copy to the SD card.
+Plug in the power.
+Pick an OS (Raspbian) and install.
+You're done!
+
+
+################################################################################
+
+# Lecture 3.2
+# Raspberry Pi Configuration
+
+################################################################################
+
+
+Raspi-Config
+    raspi-config is a tool which lets you setup various setup/boot options
+    raspi-config will run automatically when you boot with a new SD the 1st time
+
+Expand Filesystem
+    Reformats your microSD card filesystem to all access to all available memory
+    Apparently not necessary if you use NOOBS, at least the most recent version
+
+Change User Password
+    Self explanatory
+    Note that you can have multiple users
+
+Enable Boot to Desktop
+    Console - text based
+    Desktop - graphic interface (recommended)
+    Scratch - the block based programming interface
+
+Internationalization and Rastrack
+    Internationalization Options
+        Change Locale - Select a Language
+        Change Timezone
+        Change Keyboard Layout - QWERTY is default
+    Add to Rastrack
+        Service that allows Raspberry Pi users to find one another
+        Totally optional
+        Approximate location based on IP address
+
+
+################################################################################
+
+# Lecture 3.3
+# Overclocking
+
+################################################################################
+
+
+Overclocking
+    Overclocking refers to increasing the clock frequency of the device, beyond the recommended frequency
+    The term "overclocking" is sometimes misapplied to refer to increasing the internal voltage levels to increase speed, but the more appropriate term for this is "overvolting."
+    There are several different clocks inside a typical device:
+        ARM frequency - clock driving the ARM processor core
+        SDRAM frequency - clock driving the memory
+
+Impacts of Overclocking
+    Instructions are executed more quickly
+        Roughly one instruction per clock period
+    Signals have shorter time in which to travel
+        Signals must travel between storage elements in a single clock period
+        Signal data may not reach destination in time
+    Temperature of device increases
+        Shorten device lifetime
+
+Impact of Increasing Voltage (Overvolting)
+    Increasing voltage swing may increase transistor speed
+    Energy consumption is proportional to V^2
+    Thermal effects may alter timing
+    
