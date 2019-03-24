@@ -1,0 +1,258 @@
+################################################################################
+
+# IOT Specialization
+# Course 4 - Raspberry Pi Platform and Python Programming for the Raspberry Pi
+# Week 2 (Module 2)
+# 2019/03/24
+
+################################################################################
+
+# Module 2 Intro Video
+
+################################################################################
+
+
+Raspbian is a variant of the Debian Linux distribution
+So it's pretty much Linux
+So to know how to use your RPi, you need to know how to use Linux.
+
+
+################################################################################
+
+# Lecture 1.1
+# Linux Basics
+
+################################################################################
+
+
+The Shell
+    Interprets user input and executes commands
+    Text-based user interface of an operating system
+    bash (bourne again shell) is the default shell for Raspbian
+    Gives more precise control to the user
+    Can be more convenient for remote access
+    Require memorization for efficiency
+
+Console or Terminal
+    The console or terminal is a text entry and display device
+        Used to be a physical device (e.g. vt100 terminal)
+        Virtual consoles are typical now
+            A window running the shell
+        LXTerminal is the terminal used in Raspbian
+
+
+################################################################################
+
+# Lecture 1.2
+# Login
+
+################################################################################
+
+
+Accounts
+    There can be many user accounts on a Linux system
+    Each account has a username and password
+    When you first start the machine, you are prompted for username and password
+    Default username is "pi" and password is "raspberry" which you can and should change.
+
+Man(ual) Pages
+    If you know what command you want to use, but you don't know the exact syntax, you cal pull up the manual for that command using "MAN"
+    For example, to get the manual page for the command PWD, type MAN PWD into the terminal.
+
+
+################################################################################
+
+# Lecture 1.3
+# Linux Filesystem
+
+################################################################################
+
+
+Filesystem
+    A hierarchy of directories and files
+    The top directory in Linux is /
+        That's right, just "slash"
+        Also referred to as "root"
+
+PWD
+    Report which directory you are currently in
+
+
+################################################################################
+
+# Lecture 2.1
+# Navigating the Filesystem
+
+################################################################################
+
+
+CD
+    Change directory
+    cd %complete_filepath%
+        takes you to the specified location
+    cd
+        by itself, takes you to the default directory for the account
+        (e.g. /home/pi)
+    cd %subfolder%
+        to drill down a level in the hierarchy, you can use just the folder name without the full path
+    cd ..
+        go up a level from the current location
+
+LS
+    Lists the contents of the current directory
+    -L option shows all detail
+        permissions file_size date name
+
+MKDIR, RMDIR
+    MKDIR creates a directory
+    RMDIR removes (deletes) a directory
+        only works if directory is empty
+
+
+################################################################################
+
+# Lecture 2.2
+# Text Editors
+
+################################################################################
+
+
+Creating Files
+    Many ways to do this, depending on the type of file you want to create.
+    Typical method involves a text editor.
+        Like a word processor, but simpler.
+        Several are available on Linux for free:
+            emacs, vi, vim, etc.
+            apparently "nano" too according to the interstitial quiz, although you'd never know from the actual lecture herr derr
+                oh, it's not actually included any more.  he mentions this *after* the interstitial quiz herr derr derr
+        Choose a favorite and stick with it.
+
+Nano
+    Install by typing "sudo apt-get install nano"
+    Run it by typing "nano"
+    Basic function via control sequences
+
+
+################################################################################
+
+# Lecture 2.3
+# Accessing Files
+
+################################################################################
+
+
+Viewing a File
+    CAT
+        Prints the file to the terminal
+    HEAD
+        Prints the first 10 lines of the file to the terminal
+        Options will allow you to change the number of lines, but 10 is default
+    TAIL
+        Prints the last 10 lines of the file to the terminal
+        Options will allow you to change the number of lines, but 10 is default
+
+Manipulating Files
+    CP
+        Make a copy of a file
+        Syntax:
+            CP %original_file_name% %new_file_name%
+    MV
+        Move a file
+        Rename it or move it to a new directory
+        Syntax:
+            MV %original_file_name% %new_file/directory_name%
+                If you specify a new name, it renames the file to that name.
+                If you specify an existing directory name, it moves the file to that directory, keeping the original file name.
+
+
+################################################################################
+
+# Lecture 3.1
+# Permissions
+
+################################################################################
+
+
+File Permissions
+    Files have owners
+        User who created the file
+    Files have access permissions
+        Read (r)
+        Write (w)
+        Execute (x)
+    Different permissions can be assigned according to type
+        1. User: the file owner
+        2. Group: a permission group
+        3. Other: all other users
+    To see a file's permissions, use LS -L to list directory contents with details.
+        On each listing, the first 10 characters tell you about the item.
+        The first character tells you about the item type
+            d   directory
+            -   file
+        The next 9 characters tell you about the permissions on the file or directory.
+            The first group of three are the user permissions
+            The second group of three are the group permissions
+            The last group of three are the other user permissions
+        Each group of three will list the status of the three possible permissions: read, write, and execute.
+        The presence of one of the characters (r,w,x) indicates that the permission is granted, but a dash (-) or carat (^) indicates that the permission is not granted.
+        Examples:
+            drwxr-x^-x
+                Directory
+                User:   Read, Write, Execute
+                Group:  Read, Execute
+                Other:  Execute
+            -rw-r--^--
+                File
+                User:   Read, Write
+                Group:  Read
+                Other:  No Permissions
+Root Account
+    There are some files and directories that are only accessible by the "root" account.
+    This is for safety and stability of the OS.  They are files that if you edit them, could change the behavior of the OS.
+    The default "pi" account is not the "root" account.
+    The "root" account has the highest permission level.
+    Sometimes you need root privileges
+        Installing a program
+        Changing the OS - modifying, updating, editing
+    Use the "sudo" command to gain root permission for a single command.
+
+
+################################################################################
+
+# Lecture 3.2
+# Processes
+
+################################################################################
+
+
+Processes
+    A process is the execution of a program
+    Linux allows multiple processes to run concurrently
+        They aren't really running in parallel, but the OS can handle swapping between the computations needed for different processes so quickly that the result is nearly indistinguishable to us.
+        Foreground vs. Background
+            While the user works in the foreground, the OS can do tasks in the background like retrieving new emails, downloading files, waiting for network connection, running virus scan, etc.
+            These background processes are often called "daemons" because they are lurking in the background doing things.
+PS
+    This command will show the running processes.
+    The default command will only show the processes the current user launched from the currently open shell.
+    Adding the -A option will show all running processes.
+    Note that each process as a Process ID (PID).  This is useful should you need to end an unresponsive process with KILL %PID%
+
+SHUTDOWN
+    You should not just unplug a Linux machine.
+    Proper shutdown procedure is needed to place data structures in a good state.
+        Flush all buffers, close files, etc.
+    Use the SHUTDOWN command.
+
+
+################################################################################
+
+# Lecture 3.3
+# Linux Graphic User Interface
+
+################################################################################
+
+
+If you were to boot into the Terminal rather than the GUI, you can use the command STARTX to initiate the X Windows system, which is the GUI.
+
+Lots of discussion, no more major notes.
