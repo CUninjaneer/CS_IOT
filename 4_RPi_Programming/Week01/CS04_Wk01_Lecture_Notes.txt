@@ -1,0 +1,82 @@
+################################################################################
+
+# IOT Specialization
+# Course 4 - Raspberry Pi Platform and Python Programming for the Raspberry Pi
+# Week 1
+# 2019/03/23
+# Lecture 1
+# Raspberry Pi Board
+
+################################################################################
+
+
+Discussion of RPi hardware layout
+
+
+################################################################################
+
+# Lecture 2
+# Raspberry Pi Processor
+
+################################################################################
+
+
+Processor
+
+    RPi has an ARM processor.
+    It's a Broadcom chip, or rather System on a Chip (SoC), but it's an ARM-based processor at the core of that chip.
+    ARM is a British company that designs the processor core, and the license that design to different manufacturers.
+    Most mobile and IOT devices have ARM-based processor cores.
+
+
+################################################################################
+
+# Lecture 3
+# Raspberry Pi vs Arduino
+
+################################################################################
+
+
+Item            RPi                 Arduino
+----------      -------------       ------------
+Processor       1.4 GHz             16 MHz
+Processor       64 bit              8 bit
+Memory          1 Gb SRAM           2 kb SRAM
+Memory          MicroSD             32 kb Flash
+Memory                              1 kb EEPROM
+Voltage         3.3 V               5 V
+
+So the RPi has a lot more of a lot of things over the Arduino, but remember that it has more overhead too with running an OS, Python Language Interpreter, etc.
+
+RPi is sensitive to power.  If something draws too much power from it, it can cause the RPi to reboot; it can even mess up the SD and cause you to have to reinstall the OS and start from scratch.
+This happens when running the RPi off of USB power, and then attaching a power hungry USB device to the USB ports of the RPi.  Then it can't get enough power from it's supply to pass through to the USB attachment, and it shuts down.
+
+Having an OS means that we can do more complicated tasks with less programming because we have libraries, software, etc. that help us with those functions.
+
+
+################################################################################
+
+# Lecture 4
+# Operating System Benefits
+
+################################################################################
+
+
+First off, having a user interface is a big advantage.
+    You can use a text based interface or a graphic user interface (GUI).
+    Text based gives you more control, if you can remember all the commands.
+    GUI is easier to use right out the box without needing to memorize things first, but it doesn't have graphic representations of everything you can do via text interface, at least not without a lot of digging through menus, etc.
+
+
+################################################################################
+
+# Lecture 4
+# Processes
+
+################################################################################
+
+
+A big benefit of the improved processor and OS is that it can juggle processes to do things in parallel, whereas Arduino only does one command at a time.
+
+Using Hardware Devices
+    OS uses drivers to let user interface with device vs Arduino style of commands straight to the microcontroller requiring writing those drivers yourself essentially.
