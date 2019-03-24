@@ -187,4 +187,3 @@ Impact of Increasing Voltage (Overvolting)
     Increasing voltage swing may increase transistor speed
     Energy consumption is proportional to V^2
     Thermal effects may alter timing
-    
