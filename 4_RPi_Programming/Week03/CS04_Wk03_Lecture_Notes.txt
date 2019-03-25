@@ -1,0 +1,146 @@
+################################################################################
+
+# IOT Specialization
+# Course 4 - Raspberry Pi Platform and Python Programming for the Raspberry Pi
+# Week 3 (Module 3)
+# 2019/03/24
+
+################################################################################
+
+# Module 3 Intro Video
+
+################################################################################
+
+
+The reason why we focus on Python over other possible languages is that it is the best supported language on RPi, especially for controlling hardware.
+
+
+################################################################################
+
+# Lecture 1.1
+# Python on Raspberry Pi
+
+################################################################################
+
+RPi for IoT
+    To use the RPi as an IoT device, you need to do some programming.
+    Any language that you can get a compiler (e.g. C, C++, Java, etc.) and/or an interpreter (e.g. Java, Python, Perl, etc.) supported on your RPi OS could work.
+    Python is the most convenient for RPi.
+        Good programming environment built-in
+        Good APIs available to access Raspberry Pi hardware
+
+Python Language
+    High-level language, easy to use
+        Do not need to explicitly declare data types
+        No pointers
+        Object-oriented programming, classes
+    Slow compared to C, C++
+        Interpreted, not compiled
+        Related, it's difficult to meet real time deadlines
+    Two versions: Python 2.x and Python 3.x
+        Python 2.x is still supported
+        Programming differences are small
+        We will use Python 3.x
+
+
+################################################################################
+
+# Lecture 1.2
+# Python Programming Environment
+
+################################################################################
+
+
+Two Possible Environments:
+    1. Integrated Development Environment
+        IDLE is the best option, it's simple and convenient
+        Invoke via Menu>Programming>Python, Select Python 2 or 3
+    2. Text editor and interpreter, separately
+        Use Pico or Nano to write a program, e.g. "test.py"
+        Execute program in terminal by typing "python3 test.py"
+
+Executing Python Code
+    Two ways to do it:
+        1. Interactive: execute lines typed interactively in a python console
+        2. Batch: execute an entire Python program
+
+Executing Programs from IDLE
+    1. Start IDLE
+    2. File > New File
+    3. Type in code
+    4. Select Run > Run Module
+    5. Python shell will open up and code will execute
+
+
+################################################################################
+
+# Lecture 1.3
+# Python Expressions
+
+################################################################################
+
+
+
+
+
+################################################################################
+
+# Lecture 2.1
+# Strings
+
+################################################################################
+
+
+
+
+
+################################################################################
+
+# Lecture 2.2
+# Functions
+
+################################################################################
+
+
+
+
+
+################################################################################
+
+# Lecture 2.3
+# Function Arguments
+
+################################################################################
+
+
+
+
+
+################################################################################
+
+# Lecture 3.1
+# Lists
+
+################################################################################
+
+
+
+
+
+################################################################################
+
+# Lecture 3.2
+# List Methods
+
+################################################################################
+
+
+
+
+
+################################################################################
+
+# Lecture 3.3
+# Control Flow
+
+################################################################################
