@@ -80,7 +80,22 @@ Executing Programs from IDLE
 ################################################################################
 
 
+Algebraic Expressions
+    Python shell can evaluate algebraic expressions
+    Many algebraic expressions are available (i.e. min, max, etc.)
 
+Boolean Expressions
+    Comparatives (>, >=, ==, !=, <=, <)
+    Evaluate to True or False
+
+Boolean Operators
+    AND, OR, NOT
+    Evaluate to True or False
+    Inputs are True or False as well
+
+Variables, Assignments
+    Single = for assignment
+    E.g. x = 3 stores the value 3 in a variable named x
 
 
 ################################################################################
@@ -91,7 +106,36 @@ Executing Programs from IDLE
 ################################################################################
 
 
+Strings
+    Sequence of characters enclosed in quotes (single or double quotes, doesn't matter).
+    Can be assigned to a variable
+    Can be manipulated using string operators and fuctions
 
+String Operators
+
+    Operator        Definition
+    ------------    ---------------------------------------------
+    x in s          (boolean) x is a substring of s
+    x not in s      (boolean) x is not a substring of s
+    s + t           concatenation of s and t
+    s * n, n * s    concatenation of n copies of s (n is integer)
+    s[i]            character at index i of s
+    len(s)          (function) length of string s
+
+Indexing Operator
+    Index of an item in a sequence is its position in a sequence
+    Indexing operator is [], takes an index as argument
+    Indices start at 0
+    Can be used to identify characters in a string
+
+    E.g.    >>> s = 'Apple'
+            >>> s[0]
+            'A'
+            >>> s[1]
+            'p'
+            >>> s[4]
+            'e'
+            >>>
 
 
 ################################################################################
@@ -102,7 +146,21 @@ Executing Programs from IDLE
 ################################################################################
 
 
+Defining Functions
+    A function is a sequence of instructions associated with a function name
+    Function definition starts with "def"
+    Followed by function name, open/close parentheses, and colon
+    Example:    >>> def test():
+                        print('A test function')
+                >>> test()
+                A test function
+                >>>
 
+Defining/Calling Functions
+    All instructions in a function definition are indented.
+        IDLE does this automatically
+    Function is called by typing the function name with parentheses after it
+        >>> test()
 
 
 ################################################################################
@@ -113,7 +171,23 @@ Executing Programs from IDLE
 ################################################################################
 
 
+Function Parameters/Arguments
+    A function can take arguments, which are values bound to variables inside the function.
+    Arguments are listed between parentheses in the function call
+        >>> def circle_area(rad):
+                print(3.14 * rad * rad)
+        >>> circle_area(2)
+        12.56
 
+Function Return Values
+    Functions can return values with the "return" instruction
+    A function call is substituted for its return value in an expression
+        >>> def circle_area(rad):
+                return 3.14 * rad * rad
+        >>> circle_area(2)
+        12.56
+        >>> 3 + circle_area(2)
+        15.56
 
 
 ################################################################################
@@ -124,7 +198,23 @@ Executing Programs from IDLE
 ################################################################################
 
 
+List
+    A comma-separated sequence of item enclosed in square brackets
+    Items can be numbers, strings, other lists, etc.
 
+List Operators and Functions
+
+    Operator            Definition
+    ----------          ----------
+    x in lst            x is an  item of lst
+    x not in lst        x is not an item of lst
+    lst + lstB          concatenation of lst and lstB
+    lst*n, n*lstB       concatenation of n copies of lst
+    lst[i]              item at index i of lst
+    len(lst)            number of items in lst
+    min(lst)            minimum item in lst
+    max(lst)            maximum item in lst
+    sum(lst)            sum of items in lst
 
 
 ################################################################################
@@ -135,7 +225,25 @@ Executing Programs from IDLE
 ################################################################################
 
 
+List Methods
+    Similar to list operators, but invoked a different way.
+    List operators are called on the list that they operate on.
+        >>> lst = [1, 2, 3]
+        >>> lst.append[8]
+        >>> lst
+        1, 2, 3, 8
 
+List Methods
+
+    Method              Definition
+    -------------       ------------
+    lst.appemd(item)    adds item to the end of lst
+    lst.count(item)     returns the number of times that item occurs in lst
+    lst.index(item)     returns index of the first occurrence of item in lst
+    lst.pop()           removes and returns the last item in lst
+    lst.remove(item)    removes (the first occurrence of) item from lst
+    lst.reverse(item)   reverses the order of items in lst
+    lst.sort(item)      sorts the items of lst in increasing order
 
 
 ################################################################################
@@ -144,3 +252,83 @@ Executing Programs from IDLE
 # Control Flow
 
 ################################################################################
+
+
+Control Flow
+    Statements that change the order in which lines of code are executed.
+        1.  IF statement
+        2.  FOR loop
+        3.  WHILE loop
+
+IF statement
+    if <condition>
+        <indented code block>
+    <non-indented statement>
+
+IF-ELSE
+    if <condition>
+        <indented code block 1>
+    else <condition>
+        <indented code block 2>
+    <non-indented statement>
+
+FOR loop
+    for <sequence>:
+        <indented code block>
+    <non-indented statement>
+
+    The sequences are generally things like characters in a string, items in a list.  There are others, but this course will focus on those.
+
+    Example:
+        >>> name = 'Ian'
+        >>> for letter in name:
+                print(letter)
+        I
+        a
+        n
+        >>>
+
+    Example 2:
+        >>> for name in ['Jon', 'Mary', 'Pete']:
+                print (name)
+        Jon
+        Mary
+        Pete
+        >>>
+
+WHILE loop
+    A while loop is different from a for loop because rather than iterating through a sequence, it executes repeatedly while a condition is true, only stopping when the condition becomes false.
+
+    Example:
+        >>> i = 0
+        >>> while i < 3:
+                print(i)
+                i = i + 1
+        0
+        1
+        2
+        >>>
+
+
+################################################################################
+
+# Quiz
+# Scratch Work
+
+################################################################################
+
+Problem 6
+
+    res=[]
+    def merge(a,b):
+        return a+b
+    for x in [1,2]:
+        for y in [3,4]:
+            res.append(merge(x,y))
+    print(res)
+
+    x   y   res-calc    res
+    1   3   [1+3]       [4]
+    1   4   [4,1+4]     [4,5]
+    2   3   [4,5,2+3]   [4,5,5]
+    2   4   [4,5,5,2+4] [4,5,5,6]
