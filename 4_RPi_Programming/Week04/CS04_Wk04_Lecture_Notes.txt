@@ -1,0 +1,242 @@
+################################################################################
+
+# IOT Specialization
+# Course 4 - Raspberry Pi Platform and Python Programming for the Raspberry Pi
+# Week 4 (Module )
+# 2019/03/26
+
+################################################################################
+
+# Module 4 Intro Video
+
+################################################################################
+
+
+We gonna do GPIO stuff.
+
+
+################################################################################
+
+# Lecture 1.1
+# General Purpose IO Pins
+
+################################################################################
+
+
+RPi 3B+ has 40 pins, but the 3B only has 26 pins according to him, but I think I count 40.  Maybe the A and/or Zero only have 26?
+
+
+    02 04 06 08 10 12 14 16 18 20 22 24 26 28 30 32 34 36 38 40
+    01 03 05 07 09 11 13 15 17 19 21 23 25 27 29 31 33 35 37 39
+
+
+GPIO Pins Raspberry Pi B+
+    Dedicated power and ground pins
+        3.3V    1,17
+        5V      2,4
+        GND     6,9,14,20,30,39
+    The 5V pins are for the numerous 5V devices out there, but one must remember that the RPi uses 3.3V so you can't send a 5V output from one of those devices straight into the RPi.
+
+General Purpose / Multi-Function
+    The pins that aren't dedicated power and ground, are general purpose GP pins, and some of those pins are multifunction.
+    A GP pin can be driven programmatically.  You can read and write information to it, general purpose I/O.
+    Some of the pins have an additional name for additional capabilities, the multifunction pins
+        There are at least 2 pins for the I2C protocol, which he doesn't discuss so I guess I'll have to look in the Arduino class to see what that's about.
+            He does mention that I2C is a 2 wire protocol, with an SDA pin and an SCL pin.
+        There are at least 2 pins for the UART protocol, serial communication.
+
+
+################################################################################
+
+# Lecture 1.2
+# Protocol Pins
+
+################################################################################
+
+
+Protocol Pin - a multifunction pin that also handles a communications protocol
+
+I2C Pins
+    Serial communication between two chips or devices that are relatively close (like on the same board) and can share a clock (synchronous protocol).
+    It uses two pins, an SDA pin and an SDL pin.
+    You could conceivably connect numerous RPis together, connect all the SDA pins together, connect all the SDL pins together, and then have them work together communicating over those I2C pins. You'd have to write some coe to handle that obviously, but it could be done.
+
+SPI Communication Pins
+    Serial Parallel Interface Protocol
+    Uses at least 4 wires/pins
+        MOSI    Master Out Slave In
+        MISO    Master In Slave Out
+        SCLK    Shared Clock
+        CE0_N   Chip Enable 0
+        CE1_N   Chip Enable 1 [optional]
+    MOSI and MISO are directional communications
+    The shared clock is the shared clock
+    Chip Enable
+        You can have one Master directing many Slaves, but it can only direct one slave at a time.
+        So the Master must assert Chip Enable to alert a Slave that it must wake up and receive instructions.
+        You need a Chip Enable for each Slave, so this set of SPI pins will enable this Master to direct two Slaves.
+        Notice the "N" after the name.  That means Negative as in Negatively asserted, which means that the Master has to change the Chip Enable pin from 1 to 0 to assert control.
+
+
+################################################################################
+
+# Lecture 1.3
+# GPIO Access
+
+################################################################################
+
+
+GPIO Access in Python
+    Use the built-in GPIO library.
+        import Rpi.GPIO as GPIO
+    Execute you python program (script) as root (sudo).
+        sudo python3 example.py
+
+Pin Numbering Modes
+    Two ways to refer to the pins:
+        1.  The number of the pins in their order on the board.
+                Circles in professor's diagram
+        2.  The Broadcom SoC number
+                Rectangles in professor's diagram
+
+Selecting Pin Numbering Mode
+    1.  Board numbering
+            GPIO.setmode(GPIO.BOARD)
+    2.  Chip numbering
+            GPIO.setmode(GPIO.BCM)
+            Be aware that this numbering can change from one version of the board to another.
+
+
+################################################################################
+
+# Lecture 2.1
+# General Purpose IO Pins
+
+################################################################################
+
+
+Pin Direction and Assignment
+    GPIO.setup(13, GPIO.OUT)
+        Set the pin direction
+        Like pinMode(13, OUTPUT) for Arduino
+    GPIO.output(13, True)
+        Assign binary value (True/False) to output pin
+        Like digitalWrite(13,High) for Arduino
+
+Blink an LED
+    import RPi.GPIO as GPIO
+    import time
+    GPIO.setmode(GPIO.BOARD)
+    GPIO.setup(13,GPIO.OUT)
+    while True:
+        GPIO.output(13,True)
+        time.sleep(1)
+        GPIO.output(13,False)
+        time.sleep(1)
+
+Reading Input Pins
+    GPIO.setup(13,GPIO.IN)
+        set the pin direction to an input
+    value=GPIO.input(13)
+        Read value on input pin
+        Only reads digital inputs
+            No analogRead (Arduino) equivalent
+                Because no analog-to-digital converter
+
+
+################################################################################
+
+# Lecture 2.2
+# Pulse Width Modulation
+
+################################################################################
+
+
+Pulse Width Modulation
+    Square wave
+    Pulse width refers to the period the wave is at the high value vs the low value.  He uses the term "duty cycle" as well.
+    Duty cycle is the percentage of the period that the wave is at the high value.
+    Notice that they all have the same frequency.
+    This is useful because we can't generate analog signals.  Instead we use a really high frequency, faster than the analog device can respond (cycle), and we vary the pulse width to control output.
+
+PWM Initialization
+    pwm_obj = GPIO.PWM(18, 400)
+        Mark pin for PWM
+        Second argument is frequency
+        pwm_obj is an object of a particular class that has methods which allow us to accomplish what we want
+    pwm_obj.start(100)
+        Start generating PWM signal
+        Argument is duty cycle on a scale of 0 to 100
+            0 would be low (off) all the time
+            100 would be high (on) all the time
+    pwm_obj.ChangeDutyCycle(50)
+        Assign new duty cycle
+        PWM frequency is not accurate
+            Off by over 50% at 10 kHz
+            Due to using OS and interpreted language instead of compiled
+            So if you need tight frequency control, you need to use something other than the standard library functions.
+
+Frequency Control
+    Cannot easily control frequency
+        No tone() function as on Arduino
+    Need to do it manually
+        Example: This will give you a 1 Hz frequency
+            while True:
+                GPIO.output(18, True)
+                time.sleep(0.5)
+                GPIO.output(18, False)
+                time.sleep(0.5)
+
+
+
+################################################################################
+
+# Lecture 2.3
+# Demo of a Blink
+
+################################################################################
+
+
+I did it!
+FYI, LEDs have polarity.  They care which way the power goes through them.
+
+
+################################################################################
+
+# Lecture 3.1
+# Graphic User Interface
+
+################################################################################
+
+
+
+
+
+################################################################################
+
+# Lecture 3.2
+# Tkinter Library
+
+################################################################################
+
+
+
+
+
+################################################################################
+
+# Lecture 3.3
+# Interaction
+
+################################################################################
+
+
+
+
+
+################################################################################
+
+# Quiz
+# Scratch Work
+
+################################################################################
