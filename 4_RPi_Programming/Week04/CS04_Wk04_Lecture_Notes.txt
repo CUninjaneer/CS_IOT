@@ -209,7 +209,21 @@ FYI, LEDs have polarity.  They care which way the power goes through them.
 ################################################################################
 
 
+Graphic User Interface
+    Can use a GUI to access the GPIO
+    Raspberry Pi does it, Arduino doesn't
+        GUIs are supported by the operating system
+    Various visual entities (widgets) you can interact with
+        Buttons, menus, sliders, scrollbars
+        Drawing surfaces for drawing
+    Execution is controlled by the user, not the programmer
+        File opened when "open" button is clicked
 
+Event Loop
+    Typically, program will wait for the user to activate one of its widgets
+        Push a button, select a menu item, draw on a drawing surface
+    Do something in response
+    Then wait for you to do something else
 
 
 ################################################################################
@@ -220,7 +234,21 @@ FYI, LEDs have polarity.  They care which way the power goes through them.
 ################################################################################
 
 
+Tkinter
+    Tkinter library provides tools for writing programs that use graphics
+        Many GUI widgets
+            Buttons, Menus, Labels, Scrollbars, etc.
+        A Canvas widget on which arbitrary drawings can be created
+            Using lines, circles, rectangles, ovals, images, text, etc.
 
+Sample Tkinter Program
+    from Tkinter import *   #imports all Tkinter libraries
+    root = Tk()
+    root.geometry('800x600')
+    c = Canvas(root, width=800, height=600)
+    c.pack()
+    r = create_rectangle(0, 0, 50, 50, fill='red', outline='red')
+        #makes a red square in the canvas
 
 
 ################################################################################
@@ -231,7 +259,25 @@ FYI, LEDs have polarity.  They care which way the power goes through them.
 ################################################################################
 
 
+Scale Widget
 
+    from Tkinter import *
+    master = Tk()
+    w = Scale(master, from_=0, to=100, orient=HORIZONTAL)
+    w.pack()
+
+    Draws a Scale widget
+    Slider can be moved by user
+
+Interacting with the Widget
+
+    Want to do something when the user moves the slider
+
+    w = Scale(master, from_=0, to=100, orient=HORIZONTAL, command = update)
+    def update(duty):
+        pwm.ChangeDutyCycle(float(duty))
+
+    Update function is called
 
 
 ################################################################################
